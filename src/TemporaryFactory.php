@@ -30,4 +30,9 @@ class TemporaryFactory
         return $file;
     }
 
+    public function destroy()
+    {
+        $this->container->destroy();
+    }
+
 }
