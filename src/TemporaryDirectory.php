@@ -5,7 +5,7 @@ namespace holyshared\peridot\temporary;
 use \SplFileInfo;
 
 
-final class TemporaryDirectory extends TemporaryNode
+final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 {
 
     public function __construct($name, $mode = 0755)

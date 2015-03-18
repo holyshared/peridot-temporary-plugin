@@ -2,7 +2,7 @@
 
 namespace holyshared\peridot\temporary;
 
-interface FileSystemNode
+interface FileSystemNode extends FileSystemPermission
 {
     public function getPath();
     public function exists();

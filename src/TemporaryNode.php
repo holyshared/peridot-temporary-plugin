@@ -3,7 +3,7 @@
 namespace holyshared\peridot\temporary;
 
 
-abstract class TemporaryNode implements FileSystemNode, FileSystemPermission
+abstract class TemporaryNode implements FileSystemNode
 {
 
     protected $node;
