@@ -32,6 +32,29 @@ class TemporaryFile extends TemporaryNode
         return file_exists($this->getPath());
     }
 
+    public function chmod($mode)
+    {
+        chmod($this->getPath(), $mode);
+    }
+
+    public function getPermission()
+    {
+        $value = $this->file->getPerms();
+        $value = substr(sprintf('%o', $value), -4); //Example: 100444
+
+        return intval($value, 8);
+    }
+
+    public function isReadable()
+    {
+        return $this->file->isReadable();
+    }
+
+    public function isWritable()
+    {
+        return $this->file->isWritable();
+    }
+
     public function remove()
     {
         unlink($this->getPath());
