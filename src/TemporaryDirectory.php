@@ -11,7 +11,7 @@ class TemporaryDirectory extends TemporaryNode
     public function __construct($name, $mode = 0755)
     {
         $this->path = sys_get_temp_dir() . '/' . $name;
-        mkdir($this->path, $mode);
+        mkdir($this->path, $mode, true); //recursive!!
     }
 
     public function getPath()
