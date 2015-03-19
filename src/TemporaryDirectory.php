@@ -15,18 +15,4 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
         $this->node = new SplFileInfo($path);
     }
 
-    public function remove()
-    {
-        if ($this->exists() === false) {
-            return;
-        }
-        rmdir($this->getPath());
-    }
-
-    public function __destruct()
-    {
-        $this->remove();
-        $this->node = null;
-    }
-
 }

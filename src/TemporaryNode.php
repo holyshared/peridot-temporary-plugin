@@ -19,6 +19,14 @@ abstract class TemporaryNode implements FileSystemNode
         return file_exists($this->getPath());
     }
 
+    public function remove()
+    {
+        if ($this->exists() === false) {
+            return;
+        }
+        $this->removeNode();
+    }
+
     public function chmod($mode)
     {
         chmod($this->getPath(), $mode);
@@ -40,6 +48,21 @@ abstract class TemporaryNode implements FileSystemNode
     public function isWritable()
     {
         return $this->node->isWritable();
+    }
+
+    public function __destruct()
+    {
+        $this->remove();
+        $this->node = null;
+    }
+
+    private function removeNode()
+    {
+        if ($this->node->isFile()) {
+            unlink($this->getPath());
+        } else {
+            rmdir($this->getPath());
+        }
     }
 
 }
