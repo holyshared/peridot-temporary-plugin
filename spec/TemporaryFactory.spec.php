@@ -10,7 +10,7 @@ describe('TemporaryFactory', function() {
             $this->container = new TemporaryContainer();
             $this->factory = new TemporaryFactory($this->container);
 
-            $this->temp = $this->factory->makeDirectory('foo');
+            $this->temp = $this->factory->makeDirectory();
         });
         it('return TemporaryDirectory instance' , function () {
             expect($this->temp)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryDirectory');

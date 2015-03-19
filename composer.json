@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "peridot-php/peridot": "1.15"
+        "peridot-php/peridot": "1.15",
+        "rhumsaa/uuid": "~2.8"
     },
     "require-dev": {
         "peridot-php/peridot-dot-reporter": "~1.0",

@@ -2,6 +2,8 @@
 
 namespace holyshared\peridot\temporary;
 
+use Rhumsaa\Uuid\Uuid;
+
 
 class TemporaryFactory
 {
@@ -14,9 +16,11 @@ class TemporaryFactory
         $this->container = $container;
     }
 
-    public function makeDirectory($name, $mode = 0755)
+    public function makeDirectory($mode = 0755)
     {
-        $directory = new TemporaryDirectory($name, $mode);
+        $directoryId = $this->generateId();
+
+        $directory = new TemporaryDirectory($directoryId, $mode);
         $this->container->add($directory);
 
         return $directory;
@@ -33,6 +37,12 @@ class TemporaryFactory
     public function destroy()
     {
         $this->container->destroy();
+    }
+
+    private function generateId()
+    {
+        $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'peridot-temporary-');
+        return $uuid5->toString();
     }
 
 }
