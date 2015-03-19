@@ -16,7 +16,7 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
             $outputDirectory = $directory;
         }
 
-        $path = tempnam($outputDirectory, 'peridot-temporary');
+        $path = tempnam($outputDirectory, 'peridot-temporary-');
         $this->node = new SplFileObject($path);
     }
 
@@ -31,6 +31,7 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
     public function __destruct()
     {
         $this->remove();
+        $this->node = null;
     }
 
 }

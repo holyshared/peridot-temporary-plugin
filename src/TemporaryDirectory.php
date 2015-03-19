@@ -24,6 +24,7 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
     public function __destruct()
     {
         $this->remove();
+        $this->node = null;
     }
 
 }
