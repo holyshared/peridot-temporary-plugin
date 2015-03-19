@@ -8,16 +8,10 @@ use \SplFileObject;
 final class TemporaryFile extends TemporaryNode implements FileSystemNode
 {
 
-    public function __construct($directory = null, $mode = 0755)
+    public function __construct($name, $mode = 0755)
     {
-        $outputDirectory = sys_get_temp_dir();
-
-        if ($directory !== null) {
-            $outputDirectory = $directory;
-        }
-
-        $path = tempnam($outputDirectory, 'peridot-temporary-');
-        $this->node = new SplFileObject($path);
+        $path = sys_get_temp_dir() . '/' . $name;
+        $this->node = new SplFileObject($path, 'w');
     }
 
     public function remove()

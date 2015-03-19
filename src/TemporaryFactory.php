@@ -26,9 +26,11 @@ class TemporaryFactory
         return $directory;
     }
 
-    public function makeFile($directory = null, $mode = 0755)
+    public function makeFile($mode = 0755)
     {
-        $file = new TemporaryFile($directory, $mode);
+        $fileId = $this->generateId();
+
+        $file = new TemporaryFile($fileId, $mode);
         $this->container->add($file);
 
         return $file;

@@ -4,7 +4,7 @@ use holyshared\peridot\temporary\TemporaryFile;
 
 describe('TemporaryFile', function() {
     beforeEach(function() {
-        $this->temp = new TemporaryFile();
+        $this->temp = new TemporaryFile('foo');
     });
     describe('#getPath', function() {
         it('return path' , function () {
@@ -14,7 +14,7 @@ describe('TemporaryFile', function() {
     describe('#chmod', function() {
         context('when 0755', function() {
             beforeEach(function() {
-                $this->temp = new TemporaryFile();
+                $this->temp = new TemporaryFile('bar');
                 $this->temp->chmod(0755);
             });
             it('change the permission to 0755' , function () {
@@ -24,7 +24,7 @@ describe('TemporaryFile', function() {
         });
         context('when 0444', function() {
             beforeEach(function() {
-                $this->temp = new TemporaryFile();
+                $this->temp = new TemporaryFile('foobar');
                 $this->temp->chmod(0444);
             });
             it('change the permission to 0444' , function () {
@@ -35,7 +35,7 @@ describe('TemporaryFile', function() {
     });
     describe('#remove', function() {
         beforeEach(function() {
-            $this->temp = new TemporaryFile();
+            $this->temp = new TemporaryFile('barfoo');
         });
         it('remove file' , function () {
             $this->temp->remove();

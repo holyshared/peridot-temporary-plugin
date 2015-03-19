@@ -24,7 +24,7 @@ describe('TemporaryFactory', function() {
             $this->container = new TemporaryContainer();
             $this->factory = new TemporaryFactory($this->container);
 
-            $this->temp = $this->factory->makeFile('foo');
+            $this->temp = $this->factory->makeFile();
         });
         it('return TemporaryFile instance' , function () {
             expect($this->temp)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryFile');
