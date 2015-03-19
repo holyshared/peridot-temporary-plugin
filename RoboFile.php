@@ -28,8 +28,20 @@ class RoboFile extends Tasks
     public function coverallsUpload()
     {
         $result = $this->taskCoverallsKit()
-          ->configureBy('.coveralls.toml')
-          ->run();
+            ->configureBy('.coveralls.toml')
+            ->run();
+
+        return $result;
+    }
+
+    public function exampleBasic()
+    {
+        $result = $this->taskPeridot()
+            ->directoryPath('example/spec')
+            ->configuration('example/peridot.php')
+            ->reporter('dot')
+            ->bail()
+            ->run();
 
         return $result;
     }
