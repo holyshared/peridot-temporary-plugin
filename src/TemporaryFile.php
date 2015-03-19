@@ -22,6 +22,9 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
 
     public function remove()
     {
+        if ($this->exists() === false) {
+            return;
+        }
         unlink($this->getPath());
     }
 
