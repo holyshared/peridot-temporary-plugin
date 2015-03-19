@@ -12,6 +12,7 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
     {
         $path = sys_get_temp_dir() . '/' . $name;
         $this->node = new SplFileObject($path, 'w');
+        $this->chmod($mode);
     }
 
     public function remove()
