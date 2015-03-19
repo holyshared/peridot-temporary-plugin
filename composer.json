@@ -1,7 +1,7 @@
 {
     "name": "holyshared/peridot-temporary-plugin",
-    "keywords": [ "peridot", "temporary", "plugin" ],
-    "description": "",
+    "keywords": [ "peridot", "temporary", "plugin", "test", "temporary directory", "temporary file" ],
+    "description": "Temporary file / directory plugin for peridot-php",
     "license": "MIT",
     "authors": [
         {
