@@ -18,6 +18,9 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 
     public function remove()
     {
+        if ($this->exists() === false) {
+            return;
+        }
         rmdir($this->getPath());
     }
 

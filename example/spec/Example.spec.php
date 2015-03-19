@@ -1,6 +1,14 @@
 <?php
 
 describe('Example', function() {
+    describe('#makeDirectory', function() {
+        beforeEach(function() {
+            $this->temp = $this->makeDirectory();
+        });
+        it('create temporary directory', function() {
+            expect($this->temp->exists())->toBeTrue();
+        });
+    });
     describe('#makeFile', function() {
         context('When not specify a directory', function() {
             beforeEach(function() {
