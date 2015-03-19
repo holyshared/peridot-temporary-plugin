@@ -12,17 +12,7 @@ class TemporaryScope extends Scope
 
     public function __construct()
     {
-        $this->setUp();
-    }
-
-    public function setUp()
-    {
         $this->factory = new TemporaryFactory(new TemporaryContainer());
-    }
-
-    public function tearDown()
-    {
-        $this->factory->destroy();
     }
 
     public function cleanUpTemporary()

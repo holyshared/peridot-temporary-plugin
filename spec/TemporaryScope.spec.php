@@ -6,26 +6,16 @@ describe('TemporaryScope', function() {
     beforeEach(function() {
         $this->temp = new TemporaryScope();
     });
-    xdescribe('#makeDirectory', function() {
-    });
-    xdescribe('#makeWritableDirectory', function() {
-    });
-    xdescribe('#makeReadableDirectory', function() {
-    });
-    xdescribe('#makeFile', function() {
-    });
-    xdescribe('#makeWritableFile', function() {
-    });
-    xdescribe('#makeReadableFile', function() {
-    });
-    describe('#setUp', function() {
-        it('setup scope object', function() {
-            $this->temp->setUp();
+    describe('#cleanUpTemporary', function() {
+        beforeEach(function() {
+            $this->file = $this->temp->makeFile();
+            $this->directory = $this->temp->makeDirectory();
         });
-    });
-    describe('#tearDown', function() {
-        it('setup scope object', function() {
-            $this->temp->tearDown();
+        it('clean up temporary directory and file', function() {
+            $this->temp->cleanUpTemporary();
+
+            expect($this->file->exists())->toBeFalse();
+            expect($this->directory->exists())->toBeFalse();
         });
     });
 });
