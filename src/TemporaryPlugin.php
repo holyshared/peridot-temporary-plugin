@@ -34,4 +34,9 @@ class TemporaryPlugin implements Registrar
         });
     }
 
+    public static function create()
+    {
+        return new self();
+    }
+
 }

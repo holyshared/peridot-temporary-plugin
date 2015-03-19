@@ -10,9 +10,6 @@ use holyshared\peridot\temporary\TemporaryPlugin;
 return function(EventEmitterInterface $emitter)
 {
     ExpectationPlugin::create()->registerTo($emitter);
-
-    $plugin = new TemporaryPlugin();
-    $plugin->registerTo($emitter);
-
+    TemporaryPlugin::create()->registerTo($emitter);
     (new DotReporterPlugin($emitter));
 };
