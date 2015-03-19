@@ -1,6 +1,7 @@
 <?php
 
 use holyshared\peridot\temporary\TemporaryPlugin;
+use Peridot\Core\Suite;
 use Prophecy\Prophet;
 use Prophecy\Argument;
 
@@ -20,6 +21,23 @@ describe('TemporaryPlugin', function() {
         it('register plugin', function() {
             $this->plugin->registerTo($this->emitter);
             $this->prophet->checkPredictions();
+        });
+    });
+    describe('#onSuiteStart', function() {
+        beforeEach(function() {
+            $this->suite = new Suite('Plugin', function() {});
+
+            $this->plugin = new TemporaryPlugin();
+            $this->plugin->onSuiteStart($this->suite);
+        });
+        it('add scope', function() {
+            $scope = $this->suite->getScope();
+            $childScopes = $scope->peridotGetChildScopes();
+            expect($childScopes)->toHaveLength(1);
+        });
+        it('add teardown function', function() {
+            $callbacks = $this->suite->getTearDownFunctions();
+            expect($callbacks)->toHaveLength(1);
         });
     });
 });
