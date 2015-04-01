@@ -24,6 +24,28 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
         $this->chmod($mode);
     }
 
+    /**
+     * Write a text
+     *
+     * @param string $content
+     * @return int|null
+     */
+    public function write($content)
+    {
+        return $this->node->fwrite($content);
+    }
+
+    /**
+     * Write a text with newline character
+     *
+     * @param string $content
+     * @return int|null
+     */
+    public function writeln($content)
+    {
+        return $this->write($content . "\n");
+    }
+
     protected function removeNode()
     {
         unlink($this->getPath());

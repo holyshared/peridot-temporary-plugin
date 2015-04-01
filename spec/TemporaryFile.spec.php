@@ -42,4 +42,14 @@ describe('TemporaryFile', function() {
             expect($this->temp->exists())->toBeFalse();
         });
     });
+    describe('#writeln', function() {
+        beforeEach(function() {
+            $this->temp = new TemporaryFile('writable');
+        });
+        it('write a text' , function () {
+            $writeBytes = $this->temp->writeln('');
+            expect($writeBytes)->toEqual(1);
+        });
+    });
+
 });
