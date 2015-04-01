@@ -42,7 +42,7 @@ it('create temporary directory', function() {
 });
 ```
 
-or 
+or
 
 ```php
 beforeEach(function() {
@@ -71,7 +71,7 @@ it('create temporary file', function() {
 });
 ```
 
-or 
+or
 
 ```php
 beforeEach(function() {
@@ -79,6 +79,24 @@ beforeEach(function() {
 });
 it('create temporary file', function() {
     expect($this->temp->exists())->toBeTrue();
+});
+```
+
+Write to a temporary file
+--------------------------------------------------------
+
+You can output the data to a temporary file in the **write** or **writeln** method of TemporaryFile instance.
+
+```php
+beforeEach(function() {
+    $this->tempDirectory = $this->makeDirectory();
+
+    $this->tempFile = $this->makeFileFrom($this->tempDirectory);
+    $this->tempFile->writeln('Hello world!!');
+    $this->tempFile->writeln('Hello world!!');
+});
+afterEach(function() {
+    $this->cleanUpTemporary();
 });
 ```
 
