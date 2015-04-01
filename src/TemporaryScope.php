@@ -31,6 +31,7 @@ final class TemporaryScope extends Scope
      */
     private $container;
 
+
     public function __construct()
     {
         $this->factory = new TemporaryFactory();
@@ -51,7 +52,7 @@ final class TemporaryScope extends Scope
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryDirectory
      */
-    public function makeDirectory($mode = 0755)
+    public function makeDirectory($mode = FileSystemPermission::NORMAL)
     {
         $directory = $this->factory->makeDirectory($mode);
         $this->container->add($directory);
@@ -65,7 +66,7 @@ final class TemporaryScope extends Scope
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryFile
      */
-    public function makeFile($mode = 0755)
+    public function makeFile($mode = FileSystemPermission::NORMAL)
     {
         $file = $this->factory->makeFile($mode);
         $this->container->add($file);

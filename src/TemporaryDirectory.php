@@ -17,7 +17,7 @@ use \SplFileInfo;
 final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 {
 
-    public function __construct($name, $mode = 0755)
+    public function __construct($name, $mode = FileSystemPermission::NORMAL)
     {
         $path = sys_get_temp_dir() . '/' . $name;
         mkdir($path, $mode);

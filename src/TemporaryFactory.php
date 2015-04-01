@@ -27,7 +27,7 @@ final class TemporaryFactory
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryDirectory
      */
-    public function makeDirectory($mode = 0755)
+    public function makeDirectory($mode = FileSystemPermission::NORMAL)
     {
         $directoryId = $this->generateId();
         $directory = new TemporaryDirectory($directoryId, $mode);
@@ -41,7 +41,7 @@ final class TemporaryFactory
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryFile
      */
-    public function makeFile($mode = 0755)
+    public function makeFile($mode = FileSystemPermission::NORMAL)
     {
         $fileId = $this->generateId();
         $file = new TemporaryFile($fileId, $mode);
