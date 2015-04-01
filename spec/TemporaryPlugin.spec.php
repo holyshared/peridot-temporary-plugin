@@ -16,7 +16,7 @@ describe('TemporaryPlugin', function() {
                 ->shouldBeCalled();
 
             $this->emitter = $emitter->reveal();
-            $this->plugin = new TemporaryPlugin();
+            $this->plugin = TemporaryPlugin::create();
         });
         it('register plugin', function() {
             $this->plugin->registerTo($this->emitter);
@@ -27,7 +27,7 @@ describe('TemporaryPlugin', function() {
         beforeEach(function() {
             $this->suite = new Suite('Plugin', function() {});
 
-            $this->plugin = new TemporaryPlugin();
+            $this->plugin = TemporaryPlugin::create();
             $this->plugin->onSuiteStart($this->suite);
         });
         it('add scope', function() {
