@@ -13,41 +13,40 @@ namespace holyshared\peridot\temporary;
 
 use Rhumsaa\Uuid\Uuid;
 
-
-class TemporaryFactory
+/**
+ * TemporaryFactory
+ *
+ * @package holyshared\peridot\temporary
+ */
+final class TemporaryFactory
 {
 
-    private $container;
-
-
-    public function __construct(TemporaryContainer $container)
-    {
-        $this->container = $container;
-    }
-
+    /**
+     * Create a new temporary directory
+     *
+     * @param int $mode permission
+     * @return \holyshared\peridot\temporary\TemporaryDirectory
+     */
     public function makeDirectory($mode = 0755)
     {
         $directoryId = $this->generateId();
-
         $directory = new TemporaryDirectory($directoryId, $mode);
-        $this->container->add($directory);
 
         return $directory;
     }
 
+    /**
+     * Create a new temporary file
+     *
+     * @param int $mode permission
+     * @return \holyshared\peridot\temporary\TemporaryFile
+     */
     public function makeFile($mode = 0755)
     {
         $fileId = $this->generateId();
-
         $file = new TemporaryFile($fileId, $mode);
-        $this->container->add($file);
 
         return $file;
-    }
-
-    public function destroy()
-    {
-        $this->container->destroy();
     }
 
     private function generateId()

@@ -13,30 +13,64 @@ namespace holyshared\peridot\temporary;
 
 use Peridot\Core\Scope;
 
-class TemporaryScope extends Scope
+/**
+ * TemporaryScope
+ *
+ * @package holyshared\peridot\temporary
+ */
+final class TemporaryScope extends Scope
 {
 
+    /**
+     * @var \holyshared\peridot\temporary\TemporaryFactory
+     */
     private $factory;
 
+    /**
+     * @var \holyshared\peridot\temporary\TemporaryContainer
+     */
+    private $container;
 
     public function __construct()
     {
-        $this->factory = new TemporaryFactory(new TemporaryContainer());
+        $this->factory = new TemporaryFactory();
+        $this->container = new TemporaryContainer();
     }
 
+    /**
+     * Remove all temporary file and directory
+     */
     public function cleanUpTemporary()
     {
-        $this->factory->destroy();
+        $this->container->destroy();
     }
 
+    /**
+     * Create a new temporary directory
+     *
+     * @param int $mode permission
+     * @return \holyshared\peridot\temporary\TemporaryDirectory
+     */
     public function makeDirectory($mode = 0755)
     {
-        return $this->factory->makeDirectory($mode);
+        $directory = $this->factory->makeDirectory($mode);
+        $this->container->add($directory);
+
+        return $directory;
     }
 
+    /**
+     * Create a new temporary file
+     *
+     * @param int $mode permission
+     * @return \holyshared\peridot\temporary\TemporaryFile
+     */
     public function makeFile($mode = 0755)
     {
-        return $this->factory->makeFile($mode);
+        $file = $this->factory->makeFile($mode);
+        $this->container->add($file);
+
+        return $file;
     }
 
 }
