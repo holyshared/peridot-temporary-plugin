@@ -52,8 +52,8 @@ class TemporaryFactory
 
     private function generateId()
     {
-        $uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'peridot-temporary-');
-        return $uuid5->toString();
+        $uuid4 = Uuid::uuid4();
+        return $uuid4->toString();
     }
 
 }
