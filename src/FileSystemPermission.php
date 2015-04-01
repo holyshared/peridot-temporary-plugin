@@ -11,9 +11,31 @@
 
 namespace holyshared\peridot\temporary;
 
+/**
+ * Node of file permission
+ *
+ * @package holyshared\peridot\temporary
+ */
 interface FileSystemPermission
 {
+    /**
+     * Get a file permission
+     *
+     * @return int
+     */
     public function getPermission();
+
+    /**
+     * Tells whether a node is readable
+     *
+     * @return boolean
+     */
     public function isReadable();
+
+    /**
+     * Tells whether a node is writable
+     *
+     * @return boolean
+     */
     public function isWritable();
 }
