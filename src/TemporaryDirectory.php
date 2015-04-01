@@ -29,6 +29,19 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 
     protected function removeNode()
     {
+        $fileNodes = $this->createNodeIterator();
+
+        foreach ($fileNodes as $fileNode) {
+            if ($fileNode->isDir()) {
+                continue;
+            }
+            unlink($fileNode->getPathname());
+        }
+        rmdir($this->getPath());
+    }
+
+    private function createNodeIterator()
+    {
         $directory = $this->getPath();
         $directoryIterator = new RecursiveDirectoryIterator($directory,
             FilesystemIterator::CURRENT_AS_FILEINFO |
@@ -36,17 +49,12 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
             FilesystemIterator::SKIP_DOTS
         );
 
-        $filterIterator = new RecursiveIteratorIterator(
+        $nodeIterator = new RecursiveIteratorIterator(
             $directoryIterator,
             RecursiveIteratorIterator::LEAVES_ONLY
         );
 
-        foreach ($filterIterator as $file) {
-            if ($file->isDir()) {
-                continue;
-            }
-            unlink($file->getPathname());
-        }
-        rmdir($this->getPath());
+        return $nodeIterator;
     }
+
 }
