@@ -18,6 +18,11 @@ namespace holyshared\peridot\temporary;
  */
 interface FileSystemPermission
 {
+    const NORMAL = 0755; //Normal drwxr-xr-x
+    const OWNER_ONLY = 644; //Owner only drw-r--r--
+    const READ_ONLY = 0444; //Read only dr--r--r--
+    const WRITE_ONLY = 0222; //Write only d-w--w--w-
+
     /**
      * Get a file permission
      *
