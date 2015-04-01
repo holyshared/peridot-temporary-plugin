@@ -74,4 +74,25 @@ final class TemporaryScope extends Scope
         return $file;
     }
 
+    /**
+     * Create a new temporary file from directory
+     *
+     * <code>
+     * $scope = new TemporaryScope();
+     * $directory = $scope->makeDirectory();
+     * $file = $scope->makeFileFrom($directory);
+     * </code>
+     *
+     * @param \holyshared\peridot\temporary\TemporaryDirectory $directory directory
+     * @param int $mode permission
+     * @return \holyshared\peridot\temporary\TemporaryFile
+     */
+    public function makeFileFrom(TemporaryDirectory $directory, $mode = FileSystemPermission::NORMAL)
+    {
+        $file = $this->factory->makeFileFrom($directory, $mode);
+        $this->container->add($file);
+
+        return $file;
+    }
+
 }
