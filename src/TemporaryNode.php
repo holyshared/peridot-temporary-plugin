@@ -18,6 +18,11 @@ abstract class TemporaryNode implements FileSystemNode
     protected $node;
 
 
+    public function getName()
+    {
+        return $this->node->getFilename();
+    }
+
     public function getPath()
     {
         return $this->node->getPathname();
@@ -65,13 +70,6 @@ abstract class TemporaryNode implements FileSystemNode
         $this->node = null;
     }
 
-    private function removeNode()
-    {
-        if ($this->node->isFile()) {
-            unlink($this->getPath());
-        } else {
-            rmdir($this->getPath());
-        }
-    }
+    abstract protected function removeNode();
 
 }

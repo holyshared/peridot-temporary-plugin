@@ -24,4 +24,9 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
         $this->chmod($mode);
     }
 
+    protected function removeNode()
+    {
+        unlink($this->getPath());
+    }
+
 }

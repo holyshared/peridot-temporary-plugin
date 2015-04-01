@@ -12,6 +12,9 @@
 namespace holyshared\peridot\temporary;
 
 use \SplFileInfo;
+use \RecursiveDirectoryIterator;
+use \FilesystemIterator;
+use \RecursiveIteratorIterator;
 
 
 final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
@@ -24,4 +27,26 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
         $this->node = new SplFileInfo($path);
     }
 
+    protected function removeNode()
+    {
+        $directory = $this->getPath();
+        $directoryIterator = new RecursiveDirectoryIterator($directory,
+            FilesystemIterator::CURRENT_AS_FILEINFO |
+            FilesystemIterator::KEY_AS_PATHNAME |
+            FilesystemIterator::SKIP_DOTS
+        );
+
+        $filterIterator = new RecursiveIteratorIterator(
+            $directoryIterator,
+            RecursiveIteratorIterator::LEAVES_ONLY
+        );
+
+        foreach ($filterIterator as $file) {
+            if ($file->isDir()) {
+                continue;
+            }
+            unlink($file->getPathname());
+        }
+        rmdir($this->getPath());
+    }
 }
