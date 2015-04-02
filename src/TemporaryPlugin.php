@@ -40,7 +40,6 @@ class TemporaryPlugin implements Registrar
 
         $suite->addTearDownFunction(function () use(&$scope) {
             $scope->cleanUpTemporary();
-            $scope = null;
         });
     }
 
