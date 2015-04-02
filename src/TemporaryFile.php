@@ -32,6 +32,11 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
         $this->file = $this->node->openFile('w');
     }
 
+    public function close()
+    {
+        $this->file = null;
+    }
+
     /**
      * Write a text
      *
@@ -56,6 +61,7 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
 
     protected function removeNode()
     {
+        $this->close();
         unlink($this->getPath());
     }
 
