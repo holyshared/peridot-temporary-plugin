@@ -12,15 +12,24 @@
 namespace holyshared\peridot\temporary;
 
 use \SplFileObject;
+use \SplFileInfo;
 
 
 final class TemporaryFile extends TemporaryNode implements FileSystemNode
 {
 
+    private $file;
+
     public function __construct($path, $mode = FileSystemPermission::NORMAL)
     {
-        $this->node = new SplFileObject($path, 'w');
-        $this->chmod($mode);
+        $this->node = new SplFileInfo($path);
+        touch($path);
+        chmod($path, $mode);
+    }
+
+    public function open()
+    {
+        $this->file = $this->node->openFile('w');
     }
 
     /**
@@ -31,7 +40,7 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
      */
     public function write($content)
     {
-        return $this->node->fwrite($content);
+        return $this->file->fwrite($content);
     }
 
     /**
