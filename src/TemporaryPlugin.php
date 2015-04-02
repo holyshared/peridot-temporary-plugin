@@ -38,7 +38,7 @@ class TemporaryPlugin implements Registrar
         $scope = new TemporaryScope();
         $suite->getScope()->peridotAddChildScope($scope);
 
-        $suite->addTearDownFunction(function () use($scope) {
+        $suite->addTearDownFunction(function () use(&$scope) {
             $scope->cleanUpTemporary();
             $scope = null;
         });
