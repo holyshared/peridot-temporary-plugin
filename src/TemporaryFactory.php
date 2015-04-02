@@ -58,7 +58,7 @@ final class TemporaryFactory
      * $directory = $factory->makeDirectory();
      * $file = $factory->makeFileFrom($directory);
      * </code>
-     *
+     * @deprecated
      * @param \holyshared\peridot\temporary\TemporaryDirectory $directory directory
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryFile
