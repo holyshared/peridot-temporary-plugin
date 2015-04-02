@@ -3,12 +3,24 @@
 use holyshared\peridot\temporary\TemporaryDirectory;
 
 describe('TemporaryDirectory', function() {
-    beforeEach(function() {
-        $this->temp = new TemporaryDirectory('foo');
-    });
     describe('#getPath', function() {
+        beforeEach(function() {
+            $this->temp = new TemporaryDirectory('foo');
+        });
         it('return path' , function () {
             expect($this->temp->getPath())->toEndWith('/foo');
+        });
+    });
+    describe('#createFile', function() {
+        beforeEach(function() {
+            $this->temp = new TemporaryDirectory('bar');
+            $this->file = $this->temp->createFile('file.txt');
+            $this->fileName = $this->file->getName();
+            $this->filePath = $this->file->getPath();
+        });
+        it('return TemporaryFile instance' , function () {
+            expect($this->file)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryFile');
+            expect($this->filePath)->toEndWith('/bar/' . $this->fileName);
         });
     });
     describe('#chmod', function() {

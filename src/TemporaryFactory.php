@@ -44,7 +44,8 @@ final class TemporaryFactory
     public function makeFile($mode = FileSystemPermission::NORMAL)
     {
         $fileId = $this->generateId();
-        $file = new TemporaryFile($fileId, $mode);
+        $filePath = sys_get_temp_dir() . '/' . $fileId;
+        $file = new TemporaryFile($filePath, $mode);
 
         return $file;
     }
@@ -65,7 +66,7 @@ final class TemporaryFactory
     public function makeFileFrom(TemporaryDirectory $directory, $mode = FileSystemPermission::NORMAL)
     {
         $id = $this->generateId();
-        $fileId = $directory->getName() . '/' . $id;
+        $fileId = $directory->getPath() . '/' . $id;
 
         $file = new TemporaryFile($fileId, $mode);
 

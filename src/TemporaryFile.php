@@ -17,9 +17,8 @@ use \SplFileObject;
 final class TemporaryFile extends TemporaryNode implements FileSystemNode
 {
 
-    public function __construct($name, $mode = FileSystemPermission::NORMAL)
+    public function __construct($path, $mode = FileSystemPermission::NORMAL)
     {
-        $path = sys_get_temp_dir() . '/' . $name;
         $this->node = new SplFileObject($path, 'w');
         $this->chmod($mode);
     }
