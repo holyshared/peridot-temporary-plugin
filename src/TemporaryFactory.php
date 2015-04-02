@@ -30,7 +30,8 @@ final class TemporaryFactory
     public function makeDirectory($mode = FileSystemPermission::NORMAL)
     {
         $directoryId = $this->generateId();
-        $directory = new TemporaryDirectory($directoryId, $mode);
+        $path = sys_get_temp_dir() . '/' . $directoryId;
+        $directory = new TemporaryDirectory($path, $mode);
 
         return $directory;
     }
