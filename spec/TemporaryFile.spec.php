@@ -4,7 +4,8 @@ use holyshared\peridot\temporary\TemporaryFile;
 
 describe('TemporaryFile', function() {
     beforeEach(function() {
-        $this->temp = new TemporaryFile('foo');
+        $this->rootDirectory = sys_get_temp_dir();
+        $this->temp = new TemporaryFile($this->rootDirectory . '/foo');
     });
     describe('#getPath', function() {
         it('return path' , function () {
@@ -14,7 +15,7 @@ describe('TemporaryFile', function() {
     describe('#chmod', function() {
         context('when 0755', function() {
             beforeEach(function() {
-                $this->temp = new TemporaryFile('bar');
+                $this->temp = new TemporaryFile($this->rootDirectory . '/bar');
                 $this->temp->chmod(0755);
             });
             it('change the permission to 0755' , function () {
@@ -24,7 +25,7 @@ describe('TemporaryFile', function() {
         });
         context('when 0444', function() {
             beforeEach(function() {
-                $this->temp = new TemporaryFile('foobar');
+                $this->temp = new TemporaryFile($this->rootDirectory . '/foobar');
                 $this->temp->chmod(0444);
             });
             it('change the permission to 0444' , function () {
@@ -35,7 +36,7 @@ describe('TemporaryFile', function() {
     });
     describe('#remove', function() {
         beforeEach(function() {
-            $this->temp = new TemporaryFile('barfoo');
+            $this->temp = new TemporaryFile($this->rootDirectory . '/barfoo');
         });
         it('remove file' , function () {
             $this->temp->remove();
@@ -44,7 +45,8 @@ describe('TemporaryFile', function() {
     });
     describe('#writeln', function() {
         beforeEach(function() {
-            $this->temp = new TemporaryFile('writable');
+            $this->temp = new TemporaryFile($this->rootDirectory . '/writable');
+            $this->temp->open();
         });
         it('write a text' , function () {
             $writeBytes = $this->temp->writeln('');

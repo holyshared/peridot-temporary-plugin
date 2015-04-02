@@ -30,7 +30,8 @@ final class TemporaryFactory
     public function makeDirectory($mode = FileSystemPermission::NORMAL)
     {
         $directoryId = $this->generateId();
-        $directory = new TemporaryDirectory($directoryId, $mode);
+        $path = sys_get_temp_dir() . '/' . $directoryId;
+        $directory = new TemporaryDirectory($path, $mode);
 
         return $directory;
     }
@@ -44,7 +45,8 @@ final class TemporaryFactory
     public function makeFile($mode = FileSystemPermission::NORMAL)
     {
         $fileId = $this->generateId();
-        $file = new TemporaryFile($fileId, $mode);
+        $filePath = sys_get_temp_dir() . '/' . $fileId;
+        $file = new TemporaryFile($filePath, $mode);
 
         return $file;
     }
@@ -57,7 +59,7 @@ final class TemporaryFactory
      * $directory = $factory->makeDirectory();
      * $file = $factory->makeFileFrom($directory);
      * </code>
-     *
+     * @deprecated
      * @param \holyshared\peridot\temporary\TemporaryDirectory $directory directory
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryFile
@@ -65,7 +67,7 @@ final class TemporaryFactory
     public function makeFileFrom(TemporaryDirectory $directory, $mode = FileSystemPermission::NORMAL)
     {
         $id = $this->generateId();
-        $fileId = $directory->getName() . '/' . $id;
+        $fileId = $directory->getPath() . '/' . $id;
 
         $file = new TemporaryFile($fileId, $mode);
 

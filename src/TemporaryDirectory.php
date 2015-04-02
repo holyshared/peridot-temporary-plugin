@@ -20,11 +20,17 @@ use \RecursiveIteratorIterator;
 final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 {
 
-    public function __construct($name, $mode = FileSystemPermission::NORMAL)
+    public function __construct($path, $mode = FileSystemPermission::NORMAL)
     {
-        $path = sys_get_temp_dir() . '/' . $name;
         mkdir($path, $mode);
         $this->node = new SplFileInfo($path);
+    }
+
+    public function createFile($name, $mode = FileSystemPermission::NORMAL)
+    {
+        $newFile = $this->getPath() . '/' . $name;
+        $file = new TemporaryFile($newFile, $mode);
+        return $file;
     }
 
     protected function removeNode()
