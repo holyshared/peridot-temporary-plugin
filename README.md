@@ -90,8 +90,9 @@ You can output the data to a temporary file in the **write** or **writeln** meth
 ```php
 beforeEach(function() {
     $this->tempDirectory = $this->makeDirectory();
+    $this->tempFile = $this->tempDirectory->createFile('report.txt');
 
-    $this->tempFile = $this->makeFileFrom($this->tempDirectory);
+    $this->tempFile->open();
     $this->tempFile->writeln('Hello world!!');
     $this->tempFile->writeln('Hello world!!');
 });

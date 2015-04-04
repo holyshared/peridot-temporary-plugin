@@ -82,7 +82,7 @@ final class TemporaryScope extends Scope
      * $directory = $scope->makeDirectory();
      * $file = $scope->makeFileFrom($directory);
      * </code>
-     *
+     * @deprecated
      * @param \holyshared\peridot\temporary\TemporaryDirectory $directory directory
      * @param int $mode permission
      * @return \holyshared\peridot\temporary\TemporaryFile
