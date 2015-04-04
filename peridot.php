@@ -3,12 +3,12 @@
 use Evenement\EventEmitterInterface;
 use Peridot\Reporter\Dot\DotReporterPlugin;
 use cloak\peridot\CloakPlugin;
-use expectation\peridot\ExpectationPlugin;
+use expect\peridot\ExpectPlugin;
 
 
 return function(EventEmitterInterface $emitter)
 {
-    ExpectationPlugin::create()->registerTo($emitter);
+    ExpectPlugin::create()->registerTo($emitter);
 
     if (defined('HHVM_VERSION') === false) {
         CloakPlugin::create('.cloak.toml')->registerTo($emitter);
