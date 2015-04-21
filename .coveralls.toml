@@ -2,8 +2,8 @@ service = "travis-ci"
 repositoryDirectory = "."
 
 [reportFile]
-output = "tmp/coveralls.json"
+output = "coveralls.json"
 
 [reportFile.input]
 type = "lcov"
-file = "tmp/report.lcov"
+file = "report.lcov"

@@ -14,10 +14,10 @@ describe('TemporaryDirectory', function() {
             expect($this->temp->getPath())->toEndWith('/foo');
         });
     });
-    describe('#createFile', function() {
+    describe('#createNewFile', function() {
         beforeEach(function() {
             $this->temp = new TemporaryDirectory($this->rootDirectory . '/bar');
-            $this->file = $this->temp->createFile('file.txt');
+            $this->file = $this->temp->createNewFile('file.txt');
             $this->fileName = $this->file->getName();
             $this->filePath = $this->file->getPath();
         });

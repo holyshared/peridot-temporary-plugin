@@ -26,11 +26,16 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
         $this->node = new SplFileInfo($path);
     }
 
-    public function createFile($name, $mode = FileSystemPermission::NORMAL)
+    public function createNewFile($name, $mode = FileSystemPermission::NORMAL)
     {
-        $newFile = $this->getPath() . '/' . $name;
+        $newFile = $this->reslovePath($name);
         $file = new TemporaryFile($newFile, $mode);
         return $file;
+    }
+
+    public function reslovePath($relativePath)
+    {
+        return $this->getPath() . '/' . $relativePath;
     }
 
     protected function removeNode()

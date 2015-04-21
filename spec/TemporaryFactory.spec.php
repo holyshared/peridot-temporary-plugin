@@ -22,14 +22,4 @@ describe('TemporaryFactory', function() {
             expect($this->temp)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryFile');
         });
     });
-    describe('#makeFileFrom', function() {
-        beforeEach(function() {
-            $this->factory = new TemporaryFactory();
-            $this->tempDirectory = $this->factory->makeDirectory();
-            $this->tempFile = $this->factory->makeFileFrom($this->tempDirectory);
-        });
-        it('return TemporaryFile instance' , function () {
-            expect($this->tempFile)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryFile');
-        });
-    });
 });

@@ -51,29 +51,6 @@ final class TemporaryFactory
         return $file;
     }
 
-    /**
-     * Create a new temporary file from directory
-     *
-     * <code>
-     * $factory = new TemporaryFactory();
-     * $directory = $factory->makeDirectory();
-     * $file = $factory->makeFileFrom($directory);
-     * </code>
-     * @deprecated
-     * @param \holyshared\peridot\temporary\TemporaryDirectory $directory directory
-     * @param int $mode permission
-     * @return \holyshared\peridot\temporary\TemporaryFile
-     */
-    public function makeFileFrom(TemporaryDirectory $directory, $mode = FileSystemPermission::NORMAL)
-    {
-        $id = $this->generateId();
-        $fileId = $directory->getPath() . '/' . $id;
-
-        $file = new TemporaryFile($fileId, $mode);
-
-        return $file;
-    }
-
     private function generateId()
     {
         $uuid4 = Uuid::uuid4();
