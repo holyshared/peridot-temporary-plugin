@@ -6,3 +6,4 @@ Change log
 	* Upgrade packages
 		* phpspec/prophecy ~1.3 to ~1.4
 	* Remove **makeFileFrom** method from **TemporaryScope**
+	* Remove **makeFileFrom** method from **TemporaryFactory**
