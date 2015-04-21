@@ -5,3 +5,4 @@ Change log
 	* Changed the **createFile** method of **TemporaryDirectory to createNewFile**
 	* Upgrade packages
 		* phpspec/prophecy ~1.3 to ~1.4
+	* Remove **makeFileFrom** method from **TemporaryScope**
