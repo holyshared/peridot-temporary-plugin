@@ -102,6 +102,20 @@ afterEach(function() {
 });
 ```
 
+or
+
+```php
+beforeEach(function() {
+    $tempDirectory = $this->makeDirectory();
+    $tempFilePath = $tempDirectory->reslovePath('report.txt'); //File not created!!
+
+    $tempFile = new SplFileObject($tempFilePath, 'w');
+    $tempFile->fwrite('Hello world!!');
+    $tempFile->fwrite('Hello world!!');
+    $tempFile = null;
+});
+```
+
 Running tests
 --------------------------------------------------------
 
