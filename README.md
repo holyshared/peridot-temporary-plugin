@@ -107,7 +107,7 @@ or
 ```php
 beforeEach(function() {
     $tempDirectory = $this->makeDirectory();
-    $tempFilePath = $tempDirectory->reslovePath('report.txt'); //File not created!!
+    $tempFilePath = $tempDirectory->resolvePath('report.txt'); //File not created!!
 
     $tempFile = new SplFileObject($tempFilePath, 'w');
     $tempFile->fwrite('Hello world!!');
