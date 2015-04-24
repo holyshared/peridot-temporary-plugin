@@ -28,12 +28,12 @@ final class TemporaryDirectory extends TemporaryNode implements FileSystemNode
 
     public function createNewFile($name, $mode = FileSystemPermission::NORMAL)
     {
-        $newFile = $this->reslovePath($name);
+        $newFile = $this->resolvePath($name);
         $file = new TemporaryFile($newFile, $mode);
         return $file;
     }
 
-    public function reslovePath($relativePath)
+    public function resolvePath($relativePath)
     {
         return $this->getPath() . '/' . $relativePath;
     }
