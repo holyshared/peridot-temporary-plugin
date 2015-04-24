@@ -1,6 +1,9 @@
 Change log
 ====================
 
+* 0.4.1
+	* Rename **reslovePath** to **resolvePath** of TemporaryDirectory
+
 * 0.4.0
 	* Changed the **createFile** method of **TemporaryDirectory to createNewFile**
 	* Upgrade packages
