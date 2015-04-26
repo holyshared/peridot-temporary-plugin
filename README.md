@@ -91,7 +91,7 @@ You can output the data to a temporary file in the **write** or **writeln** meth
 ```php
 beforeEach(function() {
     $this->tempDirectory = $this->makeDirectory();
-    $this->tempFile = $this->tempDirectory->createFile('report.txt');
+    $this->tempFile = $this->tempDirectory->createNewFile('report.txt');
 
     $this->tempFile->open();
     $this->tempFile->writeln('Hello world!!');
@@ -99,6 +99,20 @@ beforeEach(function() {
 });
 afterEach(function() {
     $this->cleanUpTemporary();
+});
+```
+
+or
+
+```php
+beforeEach(function() {
+    $tempDirectory = $this->makeDirectory();
+    $tempFilePath = $tempDirectory->resolvePath('report.txt'); //File not created!!
+
+    $tempFile = new SplFileObject($tempFilePath, 'w');
+    $tempFile->fwrite('Hello world!!');
+    $tempFile->fwrite('Hello world!!');
+    $tempFile = null;
 });
 ```
 
