@@ -1,6 +1,9 @@
 Change log
 ====================
 
+* 0.4.2
+	* Replace package **rhumsaa/uuid** to **ramsey/uuid**
+
 * 0.4.1
 	* Rename **reslovePath** to **resolvePath** of TemporaryDirectory
 
