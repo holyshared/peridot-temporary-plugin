@@ -45,7 +45,10 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
      */
     public function write($content)
     {
-        return $this->file->fwrite($content);
+        $this->openForWrite();
+        $writtenBytes = $this->file->fwrite($content);
+
+        return $writtenBytes;
     }
 
     /**
@@ -56,13 +59,30 @@ final class TemporaryFile extends TemporaryNode implements FileSystemNode
      */
     public function writeln($content)
     {
-        return $this->write($content . "\n");
+        $this->openForWrite();
+        $writtenBytes = $this->write($content . "\n");
+
+        return $writtenBytes;
     }
 
     protected function removeNode()
     {
         $this->close();
         unlink($this->getPath());
+    }
+
+    private function openForWrite()
+    {
+        if ($this->isOpened()) {
+            return;
+        }
+
+        $this->open();
+    }
+
+    private function isOpened()
+    {
+        return $this->file !== null;
     }
 
 }
