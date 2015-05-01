@@ -2,7 +2,7 @@
 
 use holyshared\peridot\temporary\TemporaryScope;
 
-describe('TemporaryScope', function() {
+describe(TemporaryScope::class, function() {
     beforeEach(function() {
         $this->temp = new TemporaryScope();
     });
