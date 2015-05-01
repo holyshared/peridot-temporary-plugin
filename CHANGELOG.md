@@ -1,6 +1,9 @@
 Change log
 ====================
 
+* 1.0.0
+	* PHP5.4 not support
+
 * 0.4.2
 	* Replace package **rhumsaa/uuid** to **ramsey/uuid**
 
