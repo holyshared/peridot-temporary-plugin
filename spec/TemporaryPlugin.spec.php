@@ -1,17 +1,18 @@
 <?php
 
 use holyshared\peridot\temporary\TemporaryPlugin;
+use Evenement\EventEmitterInterface;
 use Peridot\Core\Suite;
 use Prophecy\Prophet;
 use Prophecy\Argument;
 
 
-describe('TemporaryPlugin', function() {
+describe(TemporaryPlugin::class, function() {
     describe('#registerTo', function() {
         beforeEach(function() {
             $this->prophet = new Prophet();
 
-            $emitter = $this->prophet->prophesize('\Evenement\EventEmitterInterface');
+            $emitter = $this->prophet->prophesize(EventEmitterInterface::class);
             $emitter->on(TemporaryPlugin::START_EVENT, Argument::type('array'))
                 ->shouldBeCalled();
 

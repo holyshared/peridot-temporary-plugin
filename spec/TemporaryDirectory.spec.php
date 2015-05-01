@@ -1,8 +1,9 @@
 <?php
 
 use holyshared\peridot\temporary\TemporaryDirectory;
+use holyshared\peridot\temporary\TemporaryFile;
 
-describe('TemporaryDirectory', function() {
+describe(TemporaryDirectory::class, function() {
     beforeEach(function() {
         $this->rootDirectory = sys_get_temp_dir();
     });
@@ -22,7 +23,7 @@ describe('TemporaryDirectory', function() {
             $this->filePath = $this->file->getPath();
         });
         it('return TemporaryFile instance' , function () {
-            expect($this->file)->toBeAnInstanceOf('holyshared\peridot\temporary\TemporaryFile');
+            expect($this->file)->toBeAnInstanceOf(TemporaryFile::class);
             expect($this->filePath)->toEndWith('/bar/' . $this->fileName);
             $this->temp->remove();
         });

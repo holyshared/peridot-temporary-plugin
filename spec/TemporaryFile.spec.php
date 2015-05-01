@@ -2,7 +2,7 @@
 
 use holyshared\peridot\temporary\TemporaryFile;
 
-describe('TemporaryFile', function() {
+describe(TemporaryFile::class, function() {
     beforeEach(function() {
         $this->rootDirectory = sys_get_temp_dir();
         $this->temp = new TemporaryFile($this->rootDirectory . '/foo');
