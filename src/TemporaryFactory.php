@@ -11,7 +11,7 @@
 
 namespace holyshared\peridot\temporary;
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * TemporaryFactory
