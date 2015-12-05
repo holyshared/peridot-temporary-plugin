@@ -11,17 +11,17 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "peridot-php/peridot": "~1.15",
-        "ramsey/uuid": "~2.8"
+        "peridot-php/peridot": "~1.16",
+        "ramsey/uuid": "~3.0"
     },
     "require-dev": {
         "peridot-php/peridot-dot-reporter": "~1.0",
         "expect/peridot-expect-plugin": "~3.0",
-        "phpspec/prophecy": "~1.4",
+        "phpspec/prophecy": "~1.5",
         "cloak/peridot-cloak-plugin": "~2.0",
         "cloak/robo-coveralls-kit": "~2.1",
         "holyshared/robo-peridot": "~2.0",
-        "codegyre/robo": "~0.5"
+        "codegyre/robo": "~0.6"
     },
     "autoload": {
         "psr-4": {
